@@ -5,6 +5,7 @@ export type Layout = "display" | "in-article" | "custom";
 type AdLayoutProps = {
   dataAdClient: string;
   dataAdSlot: string;
+  style?: React.CSSProperties;
 };
 
 interface DisplayProps extends AdLayoutProps {
@@ -15,7 +16,7 @@ export const Display = (props: DisplayProps) => {
   return (
     <ins
       className="adsbygoogle"
-      style={{ display: "block" }}
+      style={{ display: "block", textAlign: "center", ...props.style }}
       data-ad-format="auto"
       data-full-width-responsive={props.responsive ?? true}
       data-ad-client={props.dataAdClient}
@@ -30,7 +31,7 @@ export const InArticle = (props: InArticleProps) => {
   return (
     <ins
       className="adsbygoogle"
-      style={{ display: "block", textAlign: "center" }}
+      style={{ display: "block", textAlign: "center", ...props.style }}
       data-ad-layout="in-article"
       data-ad-format="fluid"
       data-ad-client={props.dataAdClient}

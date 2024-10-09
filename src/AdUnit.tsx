@@ -19,6 +19,7 @@ type AdUnitProps = {
   layout: AdLayout;
   customLayout?: JSX.Element;
   comment?: string;
+  style: React.CSSProperties;
 };
 
 /**
@@ -33,6 +34,7 @@ export const AdUnit = ({
   layout = "display",
   customLayout,
   comment = "regular",
+  style,
 }: AdUnitProps): JSX.Element | null => {
   const pathname = usePathname();
   
@@ -52,10 +54,10 @@ export const AdUnit = ({
 
   switch (layout) {
     case "display":
-      Ad = <AdLayout_Display dataAdClient={clientId} dataAdSlot={slotId} />;
+      Ad = <AdLayout_Display dataAdClient={clientId} dataAdSlot={slotId} style={style} />;
       break;
     case "in-article":
-      Ad = <AdLayout_InArticle dataAdClient={clientId} dataAdSlot={slotId} />;
+      Ad = <AdLayout_InArticle dataAdClient={clientId} dataAdSlot={slotId} style={style} />;
       break;
     case "custom":
       // TODO: add verification to custom layout
@@ -68,7 +70,7 @@ export const AdUnit = ({
       Ad = customLayout;
       break;
     default:
-      Ad = <AdLayout_Display dataAdClient={clientId} dataAdSlot={slotId} />;
+      Ad = <AdLayout_Display dataAdClient={clientId} dataAdSlot={slotId}style={style} />;
       break;
   }
 
